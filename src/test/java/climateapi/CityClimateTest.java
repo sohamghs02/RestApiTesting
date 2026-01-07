@@ -57,36 +57,14 @@ public class CityClimateTest {
       Assert.assertEquals(response.getStatusCode(), 200);
   } 
   
-  @Test(priority = 1)
-  public void postOperation() {
-
-	  String requestBody = "{\n" +
-	            "  \"id\": \"4\",\n" +
-	            "  \"name\": \"TCS\",\n" +
-	            "  \"price\": 6850\n" +
-	            "}";
-
-      Response response =
-              RestAssured
-              .given()
-              .header("Content-Type", "application/json")
-              .body(requestBody)
-              .when()
-              .post()
-              .then()
-              .extract()
-              .response();
-
-      System.out.println("POST Response:\n" + response.asPrettyString());
-      Assert.assertEquals(response.getStatusCode(), 201);
-  }
-//  
-//  @Test(priority = 2)
-//  public void patchOperation() {
+//  @Test(priority = 1)
+//  public void postOperation() {
 //
-//      //RestAssured.baseURI = "http://localhost:3000";
-//
-//      String requestBody = "{ \"market\": null }";
+//	  String requestBody = "{\n" +
+//	            "  \"id\": \"4\",\n" +
+//	            "  \"name\": \"TCS\",\n" +
+//	            "  \"price\": 6850\n" +
+//	            "}";
 //
 //      Response response =
 //              RestAssured
@@ -94,30 +72,49 @@ public class CityClimateTest {
 //              .header("Content-Type", "application/json")
 //              .body(requestBody)
 //              .when()
-//              .patch("/stocks/101")
+//              .post()
 //              .then()
 //              .extract()
 //              .response();
 //
-//      Assert.assertEquals(response.getStatusCode(), 200);
-//      System.out.println("PATCH Response:\n" + response.asPrettyString());
+//      System.out.println("POST Response:\n" + response.asPrettyString());
+//      Assert.assertEquals(response.getStatusCode(), 201);
 //  }
 //  
-//  @Test(priority = 3)
-//  public void deleteOperation() {
+//  @Test(priority = 2)
+//  public void patchOperation() {
 //
-//      //RestAssured.baseURI = "http://localhost:3000";
+//	  String requestBody = "{\n" +
+//	            "  \"price\": 6999\n" +
+//	            "}";
+//
+//      Response response = RestAssured
+//              .given()
+//              .header("Content-Type", "application/json")
+//              .body(requestBody)
+//              .when()
+//              .patch("/stocks/4")
+//              .then()
+//              .extract()
+//              .response();
+//
+//      System.out.println("PATCH Response:\n" + response.asPrettyString());
+//      Assert.assertEquals(response.getStatusCode(), 200);
+//  }
+//  
+//  @Test(priority = 1)
+//  public void deleteOperation() {
 //
 //      Response response =
 //              RestAssured
 //              .given()
 //              .when()
-//              .delete("/stocks/101")
+//              .delete("/stocks/4")
 //              .then()
 //              .extract()
 //              .response();
 //
-//      Assert.assertEquals(response.getStatusCode(), 200);
 //      System.out.println("DELETE Response:\n" + response.asPrettyString());
+//      Assert.assertEquals(response.getStatusCode(), 200);
 //  }
 }
