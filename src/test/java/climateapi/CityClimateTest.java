@@ -4,11 +4,10 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import configtest.details;
 import io.restassured.RestAssured;
-import io.restassured.http.Header;
-import io.restassured.http.Headers;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 
 public class CityClimateTest {
@@ -57,64 +56,58 @@ public class CityClimateTest {
       Assert.assertEquals(response.getStatusCode(), 200);
   } 
   
-//  @Test(priority = 1)
-//  public void postOperation() {
-//
-//	  String requestBody = "{\n" +
-//	            "  \"id\": \"4\",\n" +
-//	            "  \"name\": \"TCS\",\n" +
-//	            "  \"price\": 6850\n" +
-//	            "}";
-//
-//      Response response =
-//              RestAssured
-//              .given()
-//              .header("Content-Type", "application/json")
-//              .body(requestBody)
-//              .when()
-//              .post()
-//              .then()
-//              .extract()
-//              .response();
-//
-//      System.out.println("POST Response:\n" + response.asPrettyString());
-//      Assert.assertEquals(response.getStatusCode(), 201);
-//  }
-//  
-//  @Test(priority = 2)
-//  public void patchOperation() {
-//
-//	  String requestBody = "{\n" +
-//	            "  \"price\": 6999\n" +
-//	            "}";
-//
-//      Response response = RestAssured
-//              .given()
-//              .header("Content-Type", "application/json")
-//              .body(requestBody)
-//              .when()
-//              .patch("/stocks/4")
-//              .then()
-//              .extract()
-//              .response();
-//
-//      System.out.println("PATCH Response:\n" + response.asPrettyString());
-//      Assert.assertEquals(response.getStatusCode(), 200);
-//  }
-//  
-//  @Test(priority = 1)
-//  public void deleteOperation() {
-//
-//      Response response =
-//              RestAssured
-//              .given()
-//              .when()
-//              .delete("/stocks/4")
-//              .then()
-//              .extract()
-//              .response();
-//
-//      System.out.println("DELETE Response:\n" + response.asPrettyString());
-//      Assert.assertEquals(response.getStatusCode(), 200);
-//  }
+  @Test(priority = 1)
+  public void postOperation() {
+	  
+	  details data = new details("4", 1999, "TechMahindra");
+	  
+      Response response =
+              RestAssured
+              .given()
+              .contentType(ContentType.JSON)
+              .body(data)
+              .when()
+              .post()
+              .then()
+              .extract()
+              .response();
+
+      System.out.println("POST Response:\n" + response.asPrettyString());
+      Assert.assertEquals(response.getStatusCode(), 201);
+  }
+  
+  @Test(priority = 2)
+  public void patchOperation() {
+
+	  details data = new details(2999, "TM");
+
+      Response response = RestAssured
+              .given()
+              .contentType(ContentType.JSON)
+              .body(data)
+              .when()
+              .patch("/4")
+              .then()
+              .extract()
+              .response();
+
+      System.out.println("PATCH Response:\n" + response.asPrettyString());
+      Assert.assertEquals(response.getStatusCode(), 200);
+  }
+  
+  @Test(priority = 3)
+  public void deleteOperation() {
+
+      Response response =
+              RestAssured
+              .given()
+              .when()
+              .delete("/4")
+              .then()
+              .extract()
+              .response();
+
+      System.out.println("DELETE Response:\n" + response.asPrettyString());
+      Assert.assertEquals(response.getStatusCode(), 200);
+  }
 }

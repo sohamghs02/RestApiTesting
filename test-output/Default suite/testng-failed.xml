@@ -5,8 +5,8 @@
     <classes>
       <class name="climateapi.CityClimateTest">
         <methods>
+          <include name="patchOperation"/>
           <include name="setup"/>
-          <include name="deleteOperation"/>
         </methods>
       </class> <!-- climateapi.CityClimateTest -->
     </classes>
